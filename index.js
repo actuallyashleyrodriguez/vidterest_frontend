@@ -35,3 +35,13 @@ let renderCategory = (catHash)=> {
         
 }
 
+let renderVideo = (vidHash)=> {
+    const div = document.querySelector(`div[cat-id="${vidHash.attributes.category_id}"]`)
+    const ul = document.createElement("ul")
+    const li  = document.createElement("li")
+
+    li.innerHTML = `<iframe src="${vidHash.attributes.video_url}"></iframe>`
+
+    ul.appendChild(li)
+    div.appendChild(ul)
+}
