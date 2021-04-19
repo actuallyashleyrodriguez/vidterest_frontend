@@ -40,7 +40,9 @@ let renderVideo = (vidHash)=> {
     const ul = document.createElement("ul")
     const li  = document.createElement("li")
 
-    li.innerHTML = `<iframe src="${vidHash.attributes.video_url}"></iframe>`
+    fetch(vidHash.attributes.video_url)
+    .then(response => response.json())
+    .then(vidEmb => li.innerHTML = vidEmb.html)
 
     ul.appendChild(li)
     div.appendChild(ul)
