@@ -11,21 +11,18 @@ let showCategory = () => {
     .then(cat => cat.data.forEach(category => renderCategory(category)))
 }
 
-let showVideos = () => {
-    fetch(vidRoute)
-    .then(response => response.json())
-    .then(vid => vid.data.forEach(video => renderVideo(video)))
-}
 
 let renderCategory = (catHash)=> {
 
     const catDiv = document.createElement("div")
     const h3 = document.createElement("h3")
+    const ul = document.createElement("ul")
         
     catDiv.setAttribute("cat-id", catHash.id)
     h3.innerText = catHash.attributes.name
         
     catDiv.appendChild(h3)
+    catDiv.appendChild(ul)
        
     document.querySelector(".category-container").appendChild(catDiv);
     
@@ -36,14 +33,14 @@ let renderCategory = (catHash)=> {
 }
 
 let renderVideo = (vidHash)=> {
-    const div = document.querySelector(`div[cat-id="${vidHash.attributes.category_id}"]`)
-    const ul = document.createElement("ul")
+    const div = document.querySelector(`div[cat-id="${vidHash.attributes.category_id}"] ul`)
     const li  = document.createElement("li")
+    
 
     fetch(vidHash.attributes.video_url)
     .then(response => response.json())
     .then(vidEmb => li.innerHTML = vidEmb.html)
 
-    ul.appendChild(li)
-    div.appendChild(ul)
+    
+    div.appendChild(li)
 }
