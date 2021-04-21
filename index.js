@@ -3,7 +3,13 @@ const vidRoute= "http://localhost:3000/api/v1/videos";
 
 document.addEventListener("DOMContentLoaded", () => {
     showCategory()
+
+let button = document.querySelector(".new-category")
+button.addEventListener("click", (e) => {
+    createCategory(e)
+})
 });
+
 
 let showCategory = () => {
     fetch(catRoute)
@@ -17,14 +23,18 @@ let renderCategory = (catHash)=> {
     const catDiv = document.createElement("div")
     const h3 = document.createElement("h3")
     const ul = document.createElement("ul")
+   
         
     catDiv.setAttribute("cat-id", catHash.id)
     h3.innerText = catHash.attributes.name
-        
+
     catDiv.appendChild(h3)
     catDiv.appendChild(ul)
        
+    
     document.querySelector(".category-container").appendChild(catDiv);
+    
+
     
     fetch(vidRoute)
     .then(response => response.json())
@@ -43,4 +53,24 @@ let renderVideo = (vidHash)=> {
 
     
     div.appendChild(li)
+}
+
+let createCategory = (e) => {
+    e.preventDefault()
+
+    const configObj = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify({
+            
+        })
+    };
+    fetch(catRoute, configObj)
+    .then(resp => resp.json())
+    .then(json => {
+        console.log(json.data)
+    })
 }
