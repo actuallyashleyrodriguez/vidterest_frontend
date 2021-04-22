@@ -57,20 +57,37 @@ let renderVideo = (vidHash)=> {
 
 let createCategory = (e) => {
     e.preventDefault()
+    let form = document.createElement("form")
+    let p = document.createElement("p")
+    let submit = document.createElement("button")
 
-    const configObj = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify({
-            
-        })
-    };
-    fetch(catRoute, configObj)
-    .then(resp => resp.json())
-    .then(json => {
-        console.log(json.data)
-    })
+    form.setAttribute("class", "new-category-form")
+    p.innerHTML = "Category Name: <input type='text' name='name'>"
+    submit.innerHTML = "Submit new Category"
+
+    form.appendChild(p)
+    form.appendChild(submit)
+    document.querySelector(".create-cat").appendChild(form)
+
+    submit.addEventListener("submit", submitCatForm(f));
+
+}
+let submitCatForm = (e) => {
+    e.preventDefault()
+
+  //  const configObj = {
+    //    method: "POST",
+    //    headers: {
+    //        "Content-Type": "application/json",
+    //        "Accept": "application/json"
+    //    },
+    //    body: JSON.stringify({
+    //        
+    //    })
+    //};
+    //fetch(catRoute, configObj)
+    //.then(resp => resp.json())
+    //.then(json => {
+   //     console.log(json.data)
+    //})
 }
