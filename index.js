@@ -62,32 +62,36 @@ let createCategory = (e) => {
     let submit = document.createElement("button")
 
     form.setAttribute("class", "new-category-form")
-    p.innerHTML = "Category Name: <input type='text' name='name'>"
+    submit.setAttribute("type", "submit")
+    p.innerHTML = "Category Name: <input type='text' name='name' id='cat-name'>"
     submit.innerHTML = "Submit new Category"
 
     form.appendChild(p)
     form.appendChild(submit)
     document.querySelector(".create-cat").appendChild(form)
-
-    submit.addEventListener("submit", submitCatForm(f));
-
+    
+    form.addEventListener("submit", (e) => {
+            submitCatForm(e)
+    })
 }
+
 let submitCatForm = (e) => {
     e.preventDefault()
 
-  //  const configObj = {
-    //    method: "POST",
-    //    headers: {
-    //        "Content-Type": "application/json",
-    //        "Accept": "application/json"
-    //    },
-    //    body: JSON.stringify({
-    //        
-    //    })
-    //};
-    //fetch(catRoute, configObj)
-    //.then(resp => resp.json())
-    //.then(json => {
-   //     console.log(json.data)
-    //})
+    const nameInput = document.querySelector("#cat-name").value
+
+    fetch(catRoute, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(
+            nameInput)
+    })
+   .then(resp => resp.json())
+   .then(cat => {
+       console.log(cat)
+   })
+   
 }
