@@ -86,8 +86,9 @@ let submitCatForm = (e) => {
             "Content-Type": "application/json",
             "Accept": "application/json"
         },
-        body: JSON.stringify(
-            nameInput)
+        body: JSON.stringify( {
+            name: nameInput
+        })
     })
    .then(resp => resp.json())
    .then(cat => {
