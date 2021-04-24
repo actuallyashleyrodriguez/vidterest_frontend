@@ -21,14 +21,19 @@ let showCategory = () => {
 let renderCategory = (catHash)=> {
 
     const catDiv = document.createElement("div")
+    const vidButton = document.createElement("button")
     const h3 = document.createElement("h3")
     const ul = document.createElement("ul")
    
         
     catDiv.setAttribute("cat-id", catHash.id)
+    vidButton.setAttribute("type", "button")
+    vidButton.setAttribute("class", "new-video")
+    vidButton.innerHTML = "Upload a Video to this Category"
     h3.innerText = catHash.attributes.name
 
     catDiv.appendChild(h3)
+    catDiv.appendChild(vidButton)
     catDiv.appendChild(ul)
        
     
