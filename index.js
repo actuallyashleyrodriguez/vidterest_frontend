@@ -92,7 +92,14 @@ let submitCatForm = (e) => {
     })
    .then(resp => resp.json())
    .then(cat => {
-       console.log(cat)
+       console.log(cat.data)
+       let newCatDiv = document.createElement("div")
+       const catH3 = document.createElement("h3")
+       newCatDiv.setAttribute("cat-id", cat.data.id)
+       catH3.innerText = cat.data.attributes.name
+       newCatDiv.appendChild(catH3)
+       document.querySelector(".category-container").appendChild(newCatDiv)
+       e.target.reset()
    })
    
 }
