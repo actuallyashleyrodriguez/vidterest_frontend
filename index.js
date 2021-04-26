@@ -28,9 +28,11 @@ let renderCategory = (catHash)=> {
         
     catDiv.setAttribute("cat-id", catHash.id)
     vidButton.setAttribute("type", "button")
+    vidButton.setAttribute("id", catHash.id)
     vidButton.setAttribute("class", "new-video")
     vidButton.innerHTML = "Upload a Video to this Category"
     h3.innerText = catHash.attributes.name
+
 
     catDiv.appendChild(h3)
     catDiv.appendChild(vidButton)
@@ -39,11 +41,13 @@ let renderCategory = (catHash)=> {
     
     document.querySelector(".category-container").appendChild(catDiv);
     
-
-    
     fetch(vidRoute)
     .then(response => response.json())
     .then(vid => vid.data.forEach(video => renderVideo(video)))
+    
+    vidButton.addEventListener("click", (e) =>{
+        createVideo(e)
+    })
         
 }
 
@@ -107,4 +111,32 @@ let submitCatForm = (e) => {
        e.target.reset()
    })
    
+}
+
+let createVideo = (e) => {
+    e.preventDefault()
+    let vidForm = document.createElement("form")
+    let titleInput = document.createElement("p")
+    let vidInput = document.createElement("p")
+    let descInput = document.createElement("p")
+    let catId = document.createElement("p")
+    let submitVid = document.createElement("button")
+
+    vidForm.setAttribute("class", "new-video-form")
+    submitVid.setAttribute("type", "submit")
+    titleInput.innerHTML = "Video Title: <input type='text' name='title' id='vid-title'>"
+    descInput.innerHTML = "Video Description: <input type='text' name='description' id='vid-description'>"
+    vidInput.innerHTML = "Video URL **Please make sure you include 'https://host_wesbite/oembed?url=' before the entire URL ie: 'https://www.tiktok.com/oembed?url=':** <br> <input type='text' name='url' id='vid-url'>"
+    catId.innerHTML = `Video Category: ${e.currentTarget.previousElementSibling.innerText}`
+    submitVid.innerHTML = "Submit new Category"
+
+    vidForm.appendChild(titleInput)
+    vidForm.appendChild(descInput)
+    vidForm.appendChild(vidInput)
+    vidForm.appendChild(catId)
+    vidForm.appendChild(submitVid)
+    vidDiv = document.querySelector(`div[cat-id="${e.currentTarget.id}"]`)
+    ulSelect = document.querySelector(`div[cat-id="${e.currentTarget.id}"] ul`)
+    
+    vidDiv.insertBefore(vidForm, ulSelect)
 }
