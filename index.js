@@ -1,23 +1,25 @@
 const catRoute = "http://localhost:3000/api/v1/categories";
 const vidRoute= "http://localhost:3000/api/v1/videos";
 
+//load content
 document.addEventListener("DOMContentLoaded", () => {
     showCategory()
 
+//click action to creatte a new category
 let button = document.querySelector(".new-category")
 button.addEventListener("click", (e) => {
     createCategory(e)
 })
 });
 
-
+//fetch request to display each category
 let showCategory = () => {
     fetch(catRoute)
     .then(response => response.json())
     .then(cat => cat.data.forEach(category => renderCategory(category)))
 }
 
-
+//rendering each category in DOM using JSON info
 let renderCategory = (catHash)=> {
 
     const catDiv = document.createElement("div")
@@ -40,22 +42,24 @@ let renderCategory = (catHash)=> {
        
     
     document.querySelector(".category-container").appendChild(catDiv);
-    
+
+    //fetch request to get videos in the category from server
     fetch(vidRoute)
     .then(response => response.json())
     .then(vid => vid.data.forEach(video => renderVideo(video)))
     
+    //event listener to add a video to that specific category
     vidButton.addEventListener("click", (e) =>{
         createVideo(e)
     })
         
 }
-
+//display videos in each category
 let renderVideo = (vidHash)=> {
     const div = document.querySelector(`div[cat-id="${vidHash.attributes.category_id}"] ul`)
     const li  = document.createElement("li")
     
-
+//fetch request to OEMBED JSON on videos
     fetch(vidHash.attributes.video_url)
     .then(response => response.json())
     .then(vidEmb => li.innerHTML = vidEmb.html)
@@ -63,7 +67,7 @@ let renderVideo = (vidHash)=> {
     
     div.appendChild(li)
 }
-
+//function from event listener on line 10 to create category form and display in DOM
 let createCategory = (e) => {
     e.preventDefault()
     let form = document.createElement("form")
@@ -78,12 +82,14 @@ let createCategory = (e) => {
     form.appendChild(p)
     form.appendChild(submit)
     document.querySelector(".create-cat").appendChild(form)
-    
+
+//event listener to submit new category
     form.addEventListener("submit", (e) => {
             submitCatForm(e)
     })
 }
 
+//submit the new category form from event listener on line 87
 let submitCatForm = (e) => {
     e.preventDefault()
 
@@ -112,7 +118,7 @@ let submitCatForm = (e) => {
    })
    
 }
-
+//function from event listener on line 52 
 let createVideo = (e) => {
     e.preventDefault()
     let vidForm = document.createElement("form")
@@ -128,7 +134,7 @@ let createVideo = (e) => {
     descInput.innerHTML = "Video Description: <input type='text' name='description' id='vid-description'>"
     vidInput.innerHTML = "Video URL **Please make sure you include 'https://host_wesbite/oembed?url=' before the entire URL ie: 'https://www.tiktok.com/oembed?url=':** <br> <input type='text' name='url' id='vid-url'>"
     catId.innerHTML = `Video Category: ${e.currentTarget.previousElementSibling.innerText}`
-    submitVid.innerHTML = "Submit new Category"
+    submitVid.innerHTML = "Submit Video"
 
     vidForm.appendChild(titleInput)
     vidForm.appendChild(descInput)
