@@ -1,15 +1,17 @@
 const catRoute = "http://localhost:3000/api/v1/categories";
 const vidRoute= "http://localhost:3000/api/v1/videos";
 
+
 //load content
 document.addEventListener("DOMContentLoaded", () => {
     showCategory()
 
-//click action to creatte a new category
+//click action to create a new category
 let button = document.querySelector(".new-category")
 button.addEventListener("click", (e) => {
     createCategory(e)
-})
+}, { once: true }
+)
 });
 
 //fetch request to display each category
@@ -28,7 +30,7 @@ let renderCategory = (catHash)=> {
     const ul = document.createElement("ul")
    
         
-    catDiv.setAttribute("cat-id", catHash.id)
+    catDiv.setAttribute("id", catHash.id)
     vidButton.setAttribute("type", "button")
     vidButton.setAttribute("id", catHash.id)
     vidButton.setAttribute("class", "new-video")
@@ -48,15 +50,15 @@ let renderCategory = (catHash)=> {
     .then(response => response.json())
     .then(vid => vid.data.forEach(video => renderVideo(video)))
     
-    //event listener to add a video to that specific category
+    //event listener to add a video form to that specific category
     vidButton.addEventListener("click", (e) =>{
         createVideo(e)
-    })
+    }, { once: true })
         
 }
 //display videos in each category
 let renderVideo = (vidHash)=> {
-    const div = document.querySelector(`div[cat-id="${vidHash.attributes.category_id}"] ul`)
+    const div = document.querySelector(`div[id="${vidHash.attributes.category_id}"] ul`)
     const li  = document.createElement("li")
     
 //fetch request to OEMBED JSON on videos
@@ -73,7 +75,6 @@ let createCategory = (e) => {
     let form = document.createElement("form")
     let p = document.createElement("p")
     let submit = document.createElement("button")
-
     form.setAttribute("class", "new-category-form")
     submit.setAttribute("type", "submit")
     p.innerHTML = "Category Name: <input type='text' name='name' id='cat-name'>"
@@ -82,11 +83,10 @@ let createCategory = (e) => {
     form.appendChild(p)
     form.appendChild(submit)
     document.querySelector(".create-cat").appendChild(form)
-
-//event listener to submit new category
+    //event listener to submit new category
     form.addEventListener("submit", (e) => {
             submitCatForm(e)
-    })
+        })
 }
 
 //submit the new category form from event listener on line 87
@@ -107,7 +107,6 @@ let submitCatForm = (e) => {
     })
    .then(resp => resp.json())
    .then(cat => {
-       console.log(cat.data)
        let newCatDiv = document.createElement("div")
        const catH3 = document.createElement("h3")
        newCatDiv.setAttribute("cat-id", cat.data.id)
@@ -141,8 +140,21 @@ let createVideo = (e) => {
     vidForm.appendChild(vidInput)
     vidForm.appendChild(catId)
     vidForm.appendChild(submitVid)
-    vidDiv = document.querySelector(`div[cat-id="${e.currentTarget.id}"]`)
-    ulSelect = document.querySelector(`div[cat-id="${e.currentTarget.id}"] ul`)
+    vidDiv = document.querySelector(`div[id="${e.currentTarget.id}"]`)
+    ulSelect = document.querySelector(`div[id="${e.currentTarget.id}"] ul`)
     
     vidDiv.insertBefore(vidForm, ulSelect)
+
+    vidForm.addEventListener("submit", (e) => {
+        uploadVideo(e)
+    })
+}
+
+let uploadVideo = (e) => {
+    e.preventDefault()
+    console.log(e.target)
+    let titleInp = document.querySelector("#vid-title")
+    let descInp = document.querySelector("#vid-description")
+    let urlInp = document.querySelector("#vid-url")
+    //e.target.parentElement.id
 }
