@@ -157,6 +157,7 @@ let uploadVideo = (e) => {
     let descInp = document.querySelector("#vid-description")
     let urlInp = document.querySelector("#vid-url")
     //e.target.parentElement.id
+    
     let VidInfo = {title: titleInp, description: descInp, video_url: urlInp, category_id: e.target.parentElement.id}
 
     fetch(vidRoute, {
