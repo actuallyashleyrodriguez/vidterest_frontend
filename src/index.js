@@ -159,7 +159,7 @@ let uploadVideo = (e) => {
     //e.target.parentElement.id
     
     let VidInfo = {title: titleInp, description: descInp, video_url: urlInp, category_id: e.target.parentElement.id}
-
+    
     fetch(vidRoute, {
         method: "POST",
         headers: {
