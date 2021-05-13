@@ -18,7 +18,7 @@ button.addEventListener("click", (e) => {
 let showCategory = () => {
     fetch(catRoute)
     .then(response => response.json())
-    .then(cat => cat.data.forEach(category => renderCategory(category)))
+    .then(cat => cat.data.forEach(category =>  renderCategory(category)))
 }
 
 //rendering each category in DOM using JSON info
@@ -48,7 +48,14 @@ let renderCategory = (catHash)=> {
     //fetch request to get videos in the category from server
     fetch(vidRoute)
     .then(response => response.json())
-    .then(vid => vid.data.forEach(video => renderVideo(video)))
+    .then(vid =>  
+    vid.data.forEach(video => {
+        debugger 
+        let myVideo = new Video(video.attributes)
+        
+        renderVideo(video)
+    })
+    )
     
     //event listener to add a video form to that specific category
     vidButton.addEventListener("click", (e) =>{
@@ -115,7 +122,7 @@ let submitCatForm = (e) => {
        document.querySelector(".category-container").appendChild(newCatDiv)
        e.target.reset()
    })
-   
+   //max-width: 300px
 }
 //function from event listener on line 52 
 let createVideo = (e) => {
