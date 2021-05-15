@@ -13,6 +13,9 @@ button.addEventListener("click", (e) => {
 }, { once: true }
 )
 });
+document.addEventListener("DOMContentLoaded",  () => {
+    fetchVideo()
+} )
 
 //fetch request to display each category
 let showCategory = () => {
@@ -45,17 +48,6 @@ let renderCategory = (catHash)=> {
     
     document.querySelector(".category-container").appendChild(catDiv);
 
-    //fetch request to get videos in the category from server
-    fetch(vidRoute)
-    .then(response => response.json())
-    .then(vid =>  
-    vid.data.forEach(video => {
-        debugger 
-        let myVideo = new Video(video.attributes)
-        
-        renderVideo(video)
-    })
-    )
     
     //event listener to add a video form to that specific category
     vidButton.addEventListener("click", (e) =>{
@@ -63,8 +55,23 @@ let renderCategory = (catHash)=> {
     }, { once: true })
         
 }
+
+let fetchVideo = () => {
+    //fetch request to get videos in the category from server
+    fetch(vidRoute)
+    .then(response => response.json())
+    .then(vid => vid.data.forEach(video => {
+        let myVideo = new Video(video.attributes)
+     
+        renderVideo(video)
+    })
+    )
+}
 //display videos in each category
 let renderVideo = (vidHash)=> {
+
+   
+
     const div = document.querySelector(`div[id="${vidHash.attributes.category_id}"] ul`)
     const li  = document.createElement("li")
     
