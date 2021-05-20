@@ -61,29 +61,13 @@ let fetchVideo = () => {
     fetch(vidRoute)
     .then(response => response.json())
     .then(vid => vid.data.forEach(video => {
-        debugger
         let myVideo = new Video(video.attributes)
-     
-        renderVideo(video)
+       myVideo.renderVideo()
+       
     })
     )
 }
-//display videos in each category
-let renderVideo = (vidHash)=> {
 
-   
-
-    const div = document.querySelector(`div[id="${vidHash.attributes.category_id}"] ul`)
-    const li  = document.createElement("li")
-    
-//fetch request to OEMBED JSON on videos
-    fetch(vidHash.attributes.video_url)
-    .then(response => response.json())
-    .then(vidEmb => li.innerHTML = vidEmb.html)
-
-    
-    div.appendChild(li)
-}
 //function from event listener on line 10 to create category form and display in DOM
 let createCategory = (e) => {
     e.preventDefault()
