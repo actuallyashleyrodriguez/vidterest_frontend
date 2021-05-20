@@ -61,6 +61,7 @@ let fetchVideo = () => {
     fetch(vidRoute)
     .then(response => response.json())
     .then(vid => vid.data.forEach(video => {
+        debugger
         let myVideo = new Video(video.attributes)
      
         renderVideo(video)
