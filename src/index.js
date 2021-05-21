@@ -88,7 +88,7 @@ let createCategory = (e) => {
         })
 }
 
-//submit the new category form from event listener on line 87
+//submit the new category form from event listener on line 86
 let submitCatForm = (e) => {
     e.preventDefault()
 
