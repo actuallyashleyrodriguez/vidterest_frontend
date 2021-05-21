@@ -37,6 +37,7 @@ let renderCategory = (catHash)=> {
     vidButton.setAttribute("type", "button")
     vidButton.setAttribute("id", catHash.id)
     vidButton.setAttribute("class", "new-video")
+    ul.setAttribute("class", "videos-list")
     vidButton.innerHTML = "Upload a Video to this Category"
     h3.innerText = catHash.attributes.name
 

@@ -1,0 +1,23 @@
+.vid-list {
+    list-style-type: none;
+}
+
+#vid-url  {
+    max-width: 300px !important;
+    min-width:  300px;
+    width: 300px !important;
+    max-height: 350px !important;
+}
+
+.videos-list{
+    /*background-color: #333;*/
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.videos-list li{
+    display: inline-block;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
