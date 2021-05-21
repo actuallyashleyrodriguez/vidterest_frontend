@@ -157,16 +157,20 @@ let uploadVideo = (e) => {
     let urlInp = document.querySelector("#vid-url")
     //e.target.parentElement.id
     
-    let VidInfo = {title: titleInp, description: descInp, video_url: urlInp, category_id: e.target.parentElement.id}
-
+    let vidInfo = {title: titleInp.value, description: descInp.value, video_url: urlInp.value, category_id: e.target.parentElement.id}
+   
     fetch(vidRoute, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Accept": "application/json"
         },
-        body: JSON.stringify(VidInfo)
+        body: JSON.stringify(vidInfo)
     })
-    .then(resp => resp.json)
-    .then(vid => console.log(vid))
+    .then(resp => resp.json())
+    .then(vid => {let newVid = new Video(vid.data.attributes)
+    newVid.renderVideo()
+    })
+    e.target.reset()
+    
 }
