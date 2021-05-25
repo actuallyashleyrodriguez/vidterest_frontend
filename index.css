@@ -1,19 +1,18 @@
 body  {
     background-color: #747474;
     color: white;
+    font-family: 'Poiret One', cursive;
 }
 .category-container {
     background-color: #272727;
+    border-radius: 10px;
 }
 .vid-list {
     list-style-type: none;
 }
-
-#vid-url  {
-    max-width: 300px !important;
-    min-width:  300px;
-    width: 300px !important;
-    max-height: 350px !important;
+.tiktok-embed {
+    max-width: 325px !important;
+    height: 50% !important;
 }
 
 .videos-list{
@@ -27,4 +26,36 @@ body  {
     text-align: center;
     padding: 14px;
     text-decoration: none;
+}
+
+h1 {
+   margin-left: 200px; 
+   padding-bottom: -10px;
+   margin-bottom: -10px;
+   /*font-family: 'Amatic SC', cursive;*/
+   font-family: 'Poiret One', cursive;
+   
+}
+h2 {
+    margin-left: 250px;
+    padding-top: -10px;
+    margin-top: -5px;
+    /*font-family: 'Amatic SC', cursive;*/
+   
+}
+
+h3 {
+    margin-left: 22px;
+    /*font-family: 'Amatic SC', cursive;*/
+    font: bold;
+    color: #14A76c;
+  
+}
+button {
+    margin-left: 35px;
+    /*font-family: 'Amatic SC', cursive;*/
+}
+.header {
+    background: #14A76c center;
+    border-radius: 20px 0px 0px 20px;
 }
