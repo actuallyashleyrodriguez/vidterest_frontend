@@ -10,10 +10,14 @@ body  {
 .vid-list {
     list-style-type: none;
 }
-.tiktok-embed {
+blockquote.tiktok-embed {
     max-width: 325px !important;
     height: 50% !important;
 }
+/*.vid-list iframe{
+    width: 125%;
+    padding-bottom: 20px;
+}*/
 
 .videos-list{
     /*background-color: #333;*/

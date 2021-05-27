@@ -13,8 +13,7 @@ class Video {
         const subUL = document.createElement("ul")
         const subLI = document.createElement("li")
         li.setAttribute("class", "vid-list") 
-        subLI.setAttribute("class", "vid-list")
-        subLI.setAttribute("id", "vid-url")
+        subLI.setAttribute("class", "vid-url")
     
         
     //fetch request to OEMBED JSON on videos
