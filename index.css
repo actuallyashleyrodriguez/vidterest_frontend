@@ -4,15 +4,16 @@ body  {
     font-family: 'Poiret One', cursive;
 }
 .category-container {
-    background-color: #272727;
+    background: #272727;
+    box-shadow: 5px 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     border-radius: 10px;
 }
 .vid-list {
     list-style-type: none;
 }
 blockquote.tiktok-embed {
-    max-width: 325px !important;
-    height: 50% !important;
+    max-width: 50% !important;
+    max-height: 50% !important;
 }
 /*.vid-list iframe{
     width: 125%;
@@ -30,6 +31,8 @@ blockquote.tiktok-embed {
     text-align: center;
     padding: 14px;
     text-decoration: none;
+    position: relative;
+    top: 15px;
 }
 
 h1 {
@@ -60,6 +63,15 @@ button {
     /*font-family: 'Amatic SC', cursive;*/
 }
 .header {
-    background: #14A76c center;
+    background: linear-gradient(90deg, #14A76c, #1496a7, #925de7) center;
     border-radius: 20px 0px 0px 20px;
+}
+
+/*.try-grid {
+    display: grid;
+    grid-template-rows: minmax(300px, 350px);
+}*/
+.vid-url  {
+    position: relative;
+    top: 10px;
 }

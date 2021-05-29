@@ -13,6 +13,7 @@ class Video {
         const subUL = document.createElement("ul")
         const subLI = document.createElement("li")
         li.setAttribute("class", "vid-list") 
+        subUL.setAttribute("class", "try-grid")
         subLI.setAttribute("class", "vid-url")
     
         
