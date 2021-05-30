@@ -13,7 +13,7 @@ body  {
 }
 blockquote.tiktok-embed {
     max-width: 50% !important;
-    max-height: 50% !important;
+    max-height: auto !important;
 }
 /*.vid-list iframe{
     width: 125%;
@@ -67,10 +67,10 @@ button {
     border-radius: 20px 0px 0px 20px;
 }
 
-/*.try-grid {
-    display: grid;
-    grid-template-rows: minmax(300px, 350px);
-}*/
+.try-grid {
+    display: flex;
+    flex: 1;
+}
 .vid-url  {
     position: relative;
     top: 10px;
