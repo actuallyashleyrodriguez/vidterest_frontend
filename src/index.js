@@ -25,42 +25,9 @@ let showCategory = () => {
         let myCategory = new Category(category, category.attributes)
        myCategory.renderCategory()
        
-    } //renderCategory(category)
-    ))
+    })
+    )
 }
-
-//rendering each category in DOM using JSON info
-//let renderCategory = (catHash)=> {
-//
-//    const catDiv = document.createElement("div")
-//    const vidButton = document.createElement("button")
-//    const h3 = document.createElement("h3")
-//    const ul = document.createElement("ul")
-//   
-//        
-//    catDiv.setAttribute("id", catHash.id)
-//    vidButton.setAttribute("type", "button")
-//    vidButton.setAttribute("id", catHash.id)
-//    vidButton.setAttribute("class", "new-video")
-//    ul.setAttribute("class", "videos-list")
-//    vidButton.innerHTML = "Upload a Video to this Category"
-//    h3.innerText = catHash.attributes.name
-//
-//
-//    catDiv.appendChild(h3)
-//    catDiv.appendChild(vidButton)
-//    catDiv.appendChild(ul)
-//       
-//    
-//    document.querySelector(".category-container").appendChild(catDiv);
-//
-//    
-//    //event listener to add a video form to that specific category
-//    vidButton.addEventListener("click", (e) =>{
-//        createVideo(e)
-//    }, { once: true })
-//        
-//}
 
 let fetchVideo = () => {
     //fetch request to get videos in the category from server
@@ -94,7 +61,7 @@ let createCategory = (e) => {
         })
 }
 
-//submit the new category form from event listener on line 86
+//submit the new category form from event listener on line 45
 let submitCatForm = (e) => {
     e.preventDefault()
 
@@ -111,18 +78,14 @@ let submitCatForm = (e) => {
         })
     })
    .then(resp => resp.json())
-   .then(cat => {
-       let newCatDiv = document.createElement("div")
-       const catH3 = document.createElement("h3")
-       newCatDiv.setAttribute("cat-id", cat.data.id)
-       catH3.innerText = cat.data.attributes.name
-       newCatDiv.appendChild(catH3)
-       document.querySelector(".category-container").appendChild(newCatDiv)
+   .then(cat =>{let newCategory = new Category(cat.data, cat.data.attributes)
+    
+    newCategory.renderCategory()
        e.target.reset()
    })
    //max-width: 300px
 }
-//function from event listener on line 52 
+//function from event listener on line  35 in category.js
 let createVideo = (e) => {
     e.preventDefault()
     let vidForm = document.createElement("form")
