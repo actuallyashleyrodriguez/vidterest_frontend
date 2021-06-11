@@ -11,10 +11,14 @@ body  {
 .vid-list {
     list-style-type: none;
 }
-blockquote.tiktok-embed {
-    max-width: 50% !important;
-    max-height: auto !important;
+.vid-url iframe [src~=youtube]{
+    transform: scale(2) !important;
 }
+/* blockquote.tiktok-embed iframe{
+    width: 75% !important;
+    height: 50% !important;
+} */
+
 /*.vid-list iframe{
     width: 125%;
     padding-bottom: 20px;
@@ -67,11 +71,15 @@ button {
     border-radius: 20px 0px 0px 20px;
 }
 
-.try-grid {
+/*.try-grid {
     display: flex;
     flex: 1;
-}
+}*/
 .vid-url  {
     position: relative;
     top: 10px;
+}
+
+#player {
+   transform: scale(2); 
 }
